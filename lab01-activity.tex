@@ -1,0 +1,961 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Lab 01: Getting Started with RStudio},
+  pdfauthor={Authors: Bruno Grande and Ryan Morin},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Lab 01: Getting Started with RStudio}
+\author{Authors: Bruno Grande and Ryan Morin}
+\date{Last updated: 2022-09-14}
+
+\begin{document}
+\maketitle
+
+\hypertarget{quick-start}{%
+\subsection{Quick start}\label{quick-start}}
+
+\emph{Click the Knit button in the panel above to convert this file to
+human-friendly HTML.}
+
+The following code will ensure you have the necessary proxy settings in
+your ssh config. It also creates a symbolic link (like a shortcut) to
+the directory that contains the course files. If this is nonsense to
+you, don't worry about it and just read on. \emph{If you are running
+this file for the second+ time, then you need to comment out these lines
+by adding \# at the start of both of them.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#mkdir \textasciitilde{}/MBB243/}
+\CommentTok{\#ln {-}s /local{-}scratch/course\_files/MBB243/ \textasciitilde{}/files}
+\end{Highlighting}
+\end{Shaded}
+
+The first run of the code chunk above (or the first time you knit this
+document) should automatically generate a link to the folder that
+contains all of the files required for our course this semester. You
+don't have to worry about what this is doing, but we do need this
+section in here for the first run.
+
+\hypertarget{getting-acquainted-with-the-server-on-the-terminal}{%
+\subsection{Getting acquainted with the server on the
+Terminal}\label{getting-acquainted-with-the-server-on-the-terminal}}
+
+Each RStudio user is given a home directory on the course server under
+\texttt{/localhome/}. For example, the instructor's is
+\texttt{/localhome/sasneddo/}. Using the Terminal window, you can find
+your current working directory with the bash \texttt{pwd} command (print
+working directory). The equivalent command in R itself is
+\texttt{getwd()}. The table below provides a few pairs of commands for
+navigating the file system in bash and R, respectively.
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2083}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5833}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\centering
+Bash
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+R
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Effect
+\end{minipage} \\
+\midrule()
+\endhead
+\texttt{pwd} & \texttt{getwd()} & Print/return the current working
+directory \\
+\texttt{cd\ DIR} & \texttt{setwd("DIR")} & Change to directory specified
+by DIR \\
+\texttt{ls\ DIR} & \texttt{dir("DIR")} & Get a list of all the files in
+DIR \\
+\texttt{ls} & \texttt{dir()} & Get a list of all the files in your
+working directory \\
+\texttt{mkdir\ DIR} & \texttt{dir.create(DIR)} & Create a new directory
+named DIR (can be full or relative) \\
+\bottomrule()
+\end{longtable}
+
+\textbf{NOTE}: When you are using copy and paste to enter code into your
+terminal you should NOT copy the backtick portion of the code (visible
+in the Rmd file but not the html). The backticks are used only to
+highlight syntax. If you copy from the html instead of the Rmd this is
+not an issue.
+
+\textbf{Task:}
+
+Add R code and Bash code to the two empty code blocks below,
+respectively, to print out your current working directory. Add a comment
+to one of the code blocks that is just the full path to your home
+directory similar to the examples above.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "/local-scratch/localhome/apurific/lab-1-apurific-sfu"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#/local{-}scratch/localhome/apurific/lab{-}1{-}apurific{-}sfu}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{pwd}
+\CommentTok{\#/local{-}scratch/localhome/apurific/lab{-}1{-}apurific{-}sfu}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## /local-scratch/localhome/apurific/lab-1-apurific-sfu
+\end{verbatim}
+
+\hypertarget{other-extremely-useful-bash-commands}{%
+\subsection{Other extremely useful bash
+commands}\label{other-extremely-useful-bash-commands}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.2361}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.7639}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+Bash Command
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Effect
+\end{minipage} \\
+\midrule()
+\endhead
+\texttt{cat\ FILE1\ FILEN} & print contents of one or more files to
+STDOUT (i.e.~to the terminal) \\
+\texttt{head\ FILE} & print the first few (10 by default) lines of a
+file to STDOUT \\
+\texttt{tail\ FILE} & print the last few (10 by default) lines of a file
+to STDOUT \\
+\texttt{tail\ -n\ +NUM\ FILE} & print the last lines of a file to STDOUT
+starting at offset NUM \\
+\texttt{rm\ FILE} & permanently delete FILE \textbf{use with
+caution!} \\
+\texttt{mv\ FILE\ NEWNAME} & rename or move FILE to NEWNAME \\
+\texttt{less\ FILE} & open file in a scrollable text viewer (Q to
+exit) \\
+\texttt{wc\ FILE} & print the tabulation of characters, words and lines
+to STDOUT \\
+\texttt{cut\ -f\ 1,2,N\ FILE} & Take columns 1,2,N from a delimited file
+and pass to STDOUT \\
+\texttt{grep\ PATTERN\ FILE} & \texttt{grep} and \texttt{egrep} both
+search for simple or complex patterns of text in files \\
+\bottomrule()
+\end{longtable}
+
+\hypertarget{exploring-and}{%
+\subsection{\texorpdfstring{Exploring
+\texttt{\textbar{}},\texttt{\textgreater{}},
+\texttt{\textgreater{}\textgreater{}} and
+\texttt{\textless{}}}{Exploring \textbar,\textgreater, \textgreater\textgreater{} and \textless{}}}\label{exploring-and}}
+
+Let's revisit some of the commands you saw used in class individually.
+The code below runs the same command and either prints the result out or
+stores it in a file. You can view the contents of the new file either in
+the file explorer in Rstudio or at the Terminal (e.g.~using
+\texttt{cat}).
+
+\textbf{Task} * Duplicate the last line in this code chunk and modify it
+by replacing the single \texttt{\textgreater{}} with
+\texttt{\textgreater{}\textgreater{}}. What happens when you rerun it?
+
+\begin{itemize}
+\tightlist
+\item
+  What happens if you change the output file name (after
+  \texttt{\textgreater{}\textgreater{}}) to
+  \texttt{\textasciitilde{}/MBB243/out/genotype\_head.txt}? Why do you
+  think that is?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#head {-}n 7 /local{-}scratch/course\_files/MBB243/Sneddon\_genotypes.txt}
+\CommentTok{\# translation:}
+\CommentTok{\# head: take the first N lines (default is 10 if not specified)}
+\CommentTok{\# {-}n 5: specifies to take the first 5 lines instead}
+\CommentTok{\# the last bit is the full path to the file we want to use as input for the head command}
+\CommentTok{\# You can save the output you see by "redirecting" STDOUT to a file. }
+
+\CommentTok{\#head {-}n 25 /local{-}scratch/course\_files/MBB243/Sneddon\_genotypes.txt \textgreater{} \textasciitilde{}/MBB243/genotype\_head.txt}
+\CommentTok{\#head {-}n 25 /local{-}scratch/course\_files/MBB243/Sneddon\_genotypes.txt \textgreater{}\textgreater{} \textasciitilde{}/MBB243/genotype\_head.txt}
+\CommentTok{\# \textgreater{} : overwrites the existing file, or creates a file if the file of the mentioned name is not present in the directory}
+\CommentTok{\# \textgreater{}\textgreater{} : appends the existing file, or creates a file if the file of the mentioned name is not present in the directory}
+
+\FunctionTok{cat}\NormalTok{ \textasciitilde{}/MBB243/genotype\_head.txt}
+\CommentTok{\# the latest genotype\_head.txt file must have 50 lines (initially overwritten with 25 lines, appended with additional 25 lines)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## rs548049170  1   69869   TT
+## rs13328684   1   74792   --
+## rs9283150    1   565508  AA
+## i713426  1   726912  AA
+## rs116587930  1   727841  GG
+## rs3131972    1   752721  AG
+## rs12184325   1   754105  CC
+## rs12567639   1   756268  AA
+## rs114525117  1   759036  GG
+## rs12124819   1   776546  AA
+## rs12127425   1   794332  GG
+## rs79373928   1   801536  TT
+## rs72888853   1   815421  --
+## rs7538305    1   824398  AC
+## rs28444699   1   830181  AA
+## i713449  1   830731  --
+## rs116452738  1   834830  AG
+## rs72631887   1   835092  TT
+## rs28678693   1   838665  TT
+## rs4970382    1   840753  CC
+## rs4475691    1   846808  CC
+## rs72631889   1   851390  GT
+## rs7537756    1   854250  AA
+## rs13302982   1   861808  GG
+## rs376747791  1   863130  AA
+## rs548049170  1   69869   TT
+## rs13328684   1   74792   --
+## rs9283150    1   565508  AA
+## i713426  1   726912  AA
+## rs116587930  1   727841  GG
+## rs3131972    1   752721  AG
+## rs12184325   1   754105  CC
+## rs12567639   1   756268  AA
+## rs114525117  1   759036  GG
+## rs12124819   1   776546  AA
+## rs12127425   1   794332  GG
+## rs79373928   1   801536  TT
+## rs72888853   1   815421  --
+## rs7538305    1   824398  AC
+## rs28444699   1   830181  AA
+## i713449  1   830731  --
+## rs116452738  1   834830  AG
+## rs72631887   1   835092  TT
+## rs28678693   1   838665  TT
+## rs4970382    1   840753  CC
+## rs4475691    1   846808  CC
+## rs72631889   1   851390  GT
+## rs7537756    1   854250  AA
+## rs13302982   1   861808  GG
+## rs376747791  1   863130  AA
+\end{verbatim}
+
+You should have a few lines of genotype information in a new file named
+\texttt{\textasciitilde{}/MBB243/genotype\_head.txt}. Do you notice any
+genotypes in there that look ``off''? Assuming we wanted to sanity check
+this whole file for what genotypes exist, we can use a combination the
+\texttt{cut}, \texttt{uniq} and \texttt{sort} commands (uniq is dumb and
+only works properly if its input is sorted). The code chunk below does
+this but uses our smaller file as input for efficiency. The result
+should be all unique genotypes in that file. What did we do wrong?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#cut {-}f 4 \textasciitilde{}/MBB243/genotype\_head.txt \textgreater{} \textasciitilde{}/MBB243/genotype\_cut.txt}
+\CommentTok{\# cut command took out the 4th column and overwrote genotype\_cut.txt}
+
+\CommentTok{\#sort \textasciitilde{}/MBB243/genotype\_cut.txt \textgreater{} \textasciitilde{}/MBB243/genotype\_sort.txt}
+\CommentTok{\# sort command took out sorted the rows and overwrote genotype\_sort.txt}
+
+\CommentTok{\#uniq \textasciitilde{}/MBB243/genotype\_sort.txt \textgreater{} \textasciitilde{}/MBB243/genotype\_uniq.txt}
+\CommentTok{\# uniq command identified the unique lines from a sorted txt file and overwrote genotype\_uniq.txt}
+
+\FunctionTok{cut} \AttributeTok{{-}f}\NormalTok{ 4 \textasciitilde{}/MBB243/genotype\_head.txt }\KeywordTok{|} \FunctionTok{sort} \KeywordTok{|} \FunctionTok{uniq}
+\CommentTok{\# the cut command is similar to the output of the deconstructed code using the previous series of commands (i.e., similar to genotype\_uniq.txt)}
+
+\CommentTok{\# to help debug this, deconstruct it into smaller pieces.}
+\CommentTok{\# then try running each set of commands before the pipe, e.g. uncomment the line below and re{-}run this chunk. What is the output?  }
+\CommentTok{\#This is probably easier to do at the terminal instead of in the Rmarkdown}
+\CommentTok{\# cut {-}f 4 \textasciitilde{}/MBB243/genotype\_head.txt | sort }
+\CommentTok{\# cut {-}f 4 \textasciitilde{}/MBB243/genotype\_head.txt }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## --
+## AA
+## AC
+## AG
+## CC
+## GG
+## GT
+## TT
+\end{verbatim}
+
+\hypertarget{setting-the-value-of-a-variable}{%
+\subsection{Setting the value of a
+variable}\label{setting-the-value-of-a-variable}}
+
+Basic variables store a single value that can be changed over time
+within your program. Creating (or ``declaring'' a new variable is
+usually coupled with setting it's value. It is common to use a variable
+to capture or store the output of some other code or a function.
+Anything that is printed to your screen in Rstudio or shown in the
+output of your markdown can instead be stored in a variable. Why might
+we want to do this? Here's an example that we'll use later. The data
+files that we will use in each lab are all being put in one shared
+directory on this server:
+
+\texttt{/local-scratch/course\_files/MBB243/}
+
+Do you want to type that whole directory or paste it into your code
+every time you need to refer to a file there? Me neither! We can instead
+create a variable that stores that information and use it as a shortcut
+to represent that path. In bash, here's how we can create a variable
+named \texttt{DATA} and store this information in it. The next few lines
+show how it can be put to use various ways. This is a bit irrelevant for
+this directory since we created a symbolic link to it above and that
+acts as a shortcut but it isn't as versatile. For example, from any
+working directory, you can use \$DATA to refer to that file path but you
+would need to be in your home directory to use the symbolic link
+(\texttt{files}) or specify the path to that link
+(\texttt{\textasciitilde{}/files}) if you are in another directory.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\VariableTok{DATA}\OperatorTok{=}\StringTok{"/local{-}scratch/course\_files/MBB243/"} 
+\CommentTok{\# }\AlertTok{NOTE}\CommentTok{: if you aren\textquotesingle{}t using the course server you will need to copy the contents of this directory to whatever computer you are running Rstudio on.}
+
+\CommentTok{\# print the contents of our new variable with the echo command}
+\CommentTok{\# IMPORTANT: when retrieving the contents of a variable we need to preface it with $}
+\BuiltInTok{echo}\NormalTok{ data path is }\VariableTok{$DATA}
+\BuiltInTok{echo}\NormalTok{ another way to refer to it is \textasciitilde{}/files}
+\CommentTok{\# how about using it in combination with ls to view what\textquotesingle{}s in the directory?}
+\BuiltInTok{echo}\NormalTok{ contents of the directory:}
+\FunctionTok{ls} \AttributeTok{{-}l} \VariableTok{$DATA}
+\BuiltInTok{echo}\NormalTok{ contents of symbolic link to directory:}
+\FunctionTok{ls} \AttributeTok{{-}l}\NormalTok{ \textasciitilde{}/files/}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## data path is /local-scratch/course_files/MBB243/
+## another way to refer to it is /localhome/apurific/files
+## contents of the directory:
+## total 3723784
+## -rw-r--r--. 1 rdmorin  domain users         62 Jan 16  2022 bash_profile_template.txt
+## drwxr-xr-x. 3 rdmorin  domain users         32 Aug  8 13:45 bin
+## -rw-r--r--. 1 rdmorin  domain users   12421120 Sep  2  2011 chromFaMasked.tar
+## -rw-r--r--. 1 rdmorin  domain users        125 Jan 10  2022 condarc_template.txt
+## -rw-r--r--. 1 rdmorin  domain users     295777 Sep  9  2020 covid19_cases_bc.csv
+## -rw-r--r--. 1 rdmorin  domain users        180 Jul  2  2020 covid19_cases_canada_monthly.csv
+## -rw-r--r--. 1 rdmorin  domain users     129652 Sep  9  2020 covid19_cases_provinces.csv
+## -rw-r--r--. 1 rdmorin  domain users      18984 Sep  9  2020 covid19_cases_provinces_weekly.csv
+## -rw-r--r--. 1 rdmorin  domain users    2013935 Sep 28  2020 covid19_cases_worldwide.csv
+## -rw-r--r--. 1 rdmorin  domain users      56053 Sep 28  2020 covid19_cases_worldwide_monthly.csv
+## -rw-r--r--. 1 rdmorin  domain users      75219 Mar 11  2022 covid19_cases_worldwide_monthly.updated.csv
+## -rw-r--r--. 1 rdmorin  domain users        101 Jan  6  2022 cutsite_ref.fa
+## -rw-r--r--. 1 rdmorin  domain users  130014152 Mar 18 05:44 ensembl_genes_hg38.tsv
+## -rw-r--r--. 1 rdmorin  domain users          0 Jan 14  2022 ENST00000003084
+## lrwxrwxrwx. 1 rdmorin  domain users          5 Mar 11  2022 files -> files
+## -rw-r--r--. 1 rdmorin  domain users    1249196 Apr  1 03:00 gambl_capture_mutmat_coo.tsv
+## -rw-r--r--. 1 rdmorin  domain users     711215 Jan  9  2022 gene_id.sorted.txt
+## -rw-r--r--. 1 rdmorin  domain users    2194547 Jan  8  2022 gene_id.txt
+## -rw-r--r--. 1 rdmorin  domain users   24780911 Mar  8  2022 genome_Ashley_Bodily.txt
+## -rw-r--r--. 1 rdmorin  domain users        126 Jan  6  2022 genotype_counts.txt
+## -rw-r--r--. 1 rdmorin  domain users       8556 Sep 28  2020 get_data.R
+## -rw-r--r--. 1 rdmorin  domain users     706464 Jan 18  2022 GSE125966_annotated.csv
+## -rw-r--r--. 1 rdmorin  domain users   48430130 Jan  7  2022 GSE125966.csv
+## -rw-r--r--. 1 rdmorin  domain users      54594 Mar  6  2022 GSE125966_GOYA_mini.csv
+## -rw-r--r--. 1 rdmorin  domain users  268232379 Jan  7  2022 GSE125966_GOYA_stranded_log2CPM.csv
+## -rw-r--r--. 1 rdmorin  domain users 3144230986 Jan  5  2022 hg38.fa
+## -rw-r--r--. 1 rdmorin  domain users       7804 Jan  6  2022 hg38.fa.fai
+## -rw-r--r--. 1 rdmorin  domain users    2050717 Feb 17  2022 human_CDS_chr7.fa.gz
+## drwxr-xr-x. 2 rdmorin  domain users     425984 Jan 14  2022 human_genes_chr7
+## -rw-r--r--. 1 rdmorin  domain users   20821185 Jan 14  2022 human_genes_chr7.fa
+## -rw-r--r--. 1 rdmorin  domain users    7472874 Jan 14  2022 human_genes_chr7.tar.gz
+## lrwxrwxrwx. 1 rdmorin  domain users         35 Jan  8  2022 MBB243 -> /local-scratch/course_files/MBB243/
+## drwxr-xr-x. 2 rdmorin  domain users         10 Apr  8 09:24 md
+## -rwxr-xr-x. 1 rdmorin  domain users   66709754 Jan  6  2022 miniconda_installer.sh
+## -rw-------. 1 rdmorin  domain users   24808135 Jan  5  2022 Morin_genotypes.txt
+## -rw-r--r--. 1 rdmorin  domain users    8682096 Jan 14  2022 mouse_cds_chr7.fa.txt
+## -rw-r--r--. 1 rdmorin  domain users    2563618 Jul 15  2020 pannets_expr_array.csv.gz
+## -rw-r--r--. 1 rdmorin  domain users    2036945 Jul 14  2020 pannets_expr_rnaseq.csv.gz
+## -rw-r--r--. 1 rdmorin  domain users       4886 Jul 14  2020 pannets_metadata.csv
+## -rw-r--r--. 1 rdmorin  domain users        302 Jul  2  2020 population_canada.csv
+## -rw-r--r--. 1 rdmorin  domain users         86 Jun 24  2020 README.md
+## -rw-r--r--. 1 sasneddo domain users   16838942 Aug  8 16:13 Sneddon_genotypes.txt
+## -rw-r--r--. 1 rdmorin  domain users      12331 Feb  2  2022 some_human_genes.fa
+## -rw-r--r--. 1 rdmorin  domain users         67 Jan  8  2022 ssh_config_template.txt
+## -rw-r--r--. 1 rdmorin  domain users        131 Jan  6  2022 test.txt
+## -rw-r--r--. 1 rdmorin  domain users      34542 Feb  9  2022 words.txt
+## drwxr-xr-x. 2 rdmorin  domain users       4096 Feb  3  2022 yeast_chromosomes
+## -rw-r--r--. 1 rdmorin  domain users   12400389 Feb  3  2022 yeast_genome.fa
+## -rw-r--r--. 1 rdmorin  domain users   12400379 Feb  3  2022 yeast_genome.fa~
+## contents of symbolic link to directory:
+## total 3723784
+## -rw-r--r--. 1 rdmorin  domain users         62 Jan 16  2022 bash_profile_template.txt
+## drwxr-xr-x. 3 rdmorin  domain users         32 Aug  8 13:45 bin
+## -rw-r--r--. 1 rdmorin  domain users   12421120 Sep  2  2011 chromFaMasked.tar
+## -rw-r--r--. 1 rdmorin  domain users        125 Jan 10  2022 condarc_template.txt
+## -rw-r--r--. 1 rdmorin  domain users     295777 Sep  9  2020 covid19_cases_bc.csv
+## -rw-r--r--. 1 rdmorin  domain users        180 Jul  2  2020 covid19_cases_canada_monthly.csv
+## -rw-r--r--. 1 rdmorin  domain users     129652 Sep  9  2020 covid19_cases_provinces.csv
+## -rw-r--r--. 1 rdmorin  domain users      18984 Sep  9  2020 covid19_cases_provinces_weekly.csv
+## -rw-r--r--. 1 rdmorin  domain users    2013935 Sep 28  2020 covid19_cases_worldwide.csv
+## -rw-r--r--. 1 rdmorin  domain users      56053 Sep 28  2020 covid19_cases_worldwide_monthly.csv
+## -rw-r--r--. 1 rdmorin  domain users      75219 Mar 11  2022 covid19_cases_worldwide_monthly.updated.csv
+## -rw-r--r--. 1 rdmorin  domain users        101 Jan  6  2022 cutsite_ref.fa
+## -rw-r--r--. 1 rdmorin  domain users  130014152 Mar 18 05:44 ensembl_genes_hg38.tsv
+## -rw-r--r--. 1 rdmorin  domain users          0 Jan 14  2022 ENST00000003084
+## lrwxrwxrwx. 1 rdmorin  domain users          5 Mar 11  2022 files -> files
+## -rw-r--r--. 1 rdmorin  domain users    1249196 Apr  1 03:00 gambl_capture_mutmat_coo.tsv
+## -rw-r--r--. 1 rdmorin  domain users     711215 Jan  9  2022 gene_id.sorted.txt
+## -rw-r--r--. 1 rdmorin  domain users    2194547 Jan  8  2022 gene_id.txt
+## -rw-r--r--. 1 rdmorin  domain users   24780911 Mar  8  2022 genome_Ashley_Bodily.txt
+## -rw-r--r--. 1 rdmorin  domain users        126 Jan  6  2022 genotype_counts.txt
+## -rw-r--r--. 1 rdmorin  domain users       8556 Sep 28  2020 get_data.R
+## -rw-r--r--. 1 rdmorin  domain users     706464 Jan 18  2022 GSE125966_annotated.csv
+## -rw-r--r--. 1 rdmorin  domain users   48430130 Jan  7  2022 GSE125966.csv
+## -rw-r--r--. 1 rdmorin  domain users      54594 Mar  6  2022 GSE125966_GOYA_mini.csv
+## -rw-r--r--. 1 rdmorin  domain users  268232379 Jan  7  2022 GSE125966_GOYA_stranded_log2CPM.csv
+## -rw-r--r--. 1 rdmorin  domain users 3144230986 Jan  5  2022 hg38.fa
+## -rw-r--r--. 1 rdmorin  domain users       7804 Jan  6  2022 hg38.fa.fai
+## -rw-r--r--. 1 rdmorin  domain users    2050717 Feb 17  2022 human_CDS_chr7.fa.gz
+## drwxr-xr-x. 2 rdmorin  domain users     425984 Jan 14  2022 human_genes_chr7
+## -rw-r--r--. 1 rdmorin  domain users   20821185 Jan 14  2022 human_genes_chr7.fa
+## -rw-r--r--. 1 rdmorin  domain users    7472874 Jan 14  2022 human_genes_chr7.tar.gz
+## lrwxrwxrwx. 1 rdmorin  domain users         35 Jan  8  2022 MBB243 -> /local-scratch/course_files/MBB243/
+## drwxr-xr-x. 2 rdmorin  domain users         10 Apr  8 09:24 md
+## -rwxr-xr-x. 1 rdmorin  domain users   66709754 Jan  6  2022 miniconda_installer.sh
+## -rw-------. 1 rdmorin  domain users   24808135 Jan  5  2022 Morin_genotypes.txt
+## -rw-r--r--. 1 rdmorin  domain users    8682096 Jan 14  2022 mouse_cds_chr7.fa.txt
+## -rw-r--r--. 1 rdmorin  domain users    2563618 Jul 15  2020 pannets_expr_array.csv.gz
+## -rw-r--r--. 1 rdmorin  domain users    2036945 Jul 14  2020 pannets_expr_rnaseq.csv.gz
+## -rw-r--r--. 1 rdmorin  domain users       4886 Jul 14  2020 pannets_metadata.csv
+## -rw-r--r--. 1 rdmorin  domain users        302 Jul  2  2020 population_canada.csv
+## -rw-r--r--. 1 rdmorin  domain users         86 Jun 24  2020 README.md
+## -rw-r--r--. 1 sasneddo domain users   16838942 Aug  8 16:13 Sneddon_genotypes.txt
+## -rw-r--r--. 1 rdmorin  domain users      12331 Feb  2  2022 some_human_genes.fa
+## -rw-r--r--. 1 rdmorin  domain users         67 Jan  8  2022 ssh_config_template.txt
+## -rw-r--r--. 1 rdmorin  domain users        131 Jan  6  2022 test.txt
+## -rw-r--r--. 1 rdmorin  domain users      34542 Feb  9  2022 words.txt
+## drwxr-xr-x. 2 rdmorin  domain users       4096 Feb  3  2022 yeast_chromosomes
+## -rw-r--r--. 1 rdmorin  domain users   12400389 Feb  3  2022 yeast_genome.fa
+## -rw-r--r--. 1 rdmorin  domain users   12400379 Feb  3  2022 yeast_genome.fa~
+\end{verbatim}
+
+\hypertarget{setting-up-bash-preferences-and-managing-custom-software}{%
+\subsection{Setting up bash preferences and managing custom
+software}\label{setting-up-bash-preferences-and-managing-custom-software}}
+
+Many things you do in the bash terminal are ``one-off'' commands that
+wouldn't make sense to run in a markdown document. For example, you can
+create, destroy, manipulate or rename files from bash and these changes
+will exist outside the sandboxed environment. For example, the first
+time you run this code chunk you will create a new file and add one line
+of text to it. In most scenarios, you are much more likely to use bash
+directly in an interactive shell session. RStudio gives you a terminal
+session where you can run bash commands interactively and navigate the
+file system.
+
+\textbf{Task:}
+
+Run the following code chunk once then use the RStudio terminal (not the
+Console) to find and view the contents of that file. If you have already
+``knit'' the document then the code has been run. The \texttt{cat}
+command will dump the contents of any file to your terminal and is a
+convenient way to look at the contents of a file. For larger files, it's
+better to use either \texttt{head} to view the first few lines or
+\texttt{tail} to view the last few. What changes in the file if you
+manually run the code chunk a few more times?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{"Hello terminal!"} \OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ EMPTY.txt}
+\BuiltInTok{echo} \VariableTok{$(}\FunctionTok{date}\VariableTok{)} \OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ EMPTY.txt}
+\CommentTok{\# The redirect operators \textgreater{} and \textgreater{}\textgreater{} are related but have different effects on existing files. It\textquotesingle{}s important that you know the difference. }
+\CommentTok{\# If you aren\textquotesingle{}t clear, go back to the earlier portion of this document that introduces it and/or ask the TA or instructor. }
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Task:}
+
+Make a copy of the code chunk above and put it below this text in your
+version of the Rmd file. Modify the code so it instead creates a file
+with this exact name: \texttt{\textasciitilde{}/.bash\_profile}.
+\emph{General hint}: when you can, use copy/paste so you don't have to
+re-type a command or file name. You also need to change the code chunk
+to add a single line to the new file. The first line of text should be:
+
+\texttt{source\ \textasciitilde{}/.bashrc}
+
+The second line should be:
+
+\texttt{DATA=/local-scratch/course\_files/MBB243/}
+
+Be careful here with the distinction between \texttt{\textgreater{}} and
+\texttt{\textgreater{}\textgreater{}}. The code should only ``append''
+lines to the file if/when necessary (i.e.~when re-run you will not get
+additional lines in the file). You can check that your code is working
+by running the chunk more than once and then verifying the contents of
+the file. If you are so inclined, you can even add a line to your code
+chunk that will report the current number of lines in the file each time
+the code chunk is run. Give it a try if you're feeling ambitious! By the
+end of this lab you will need to have completed this such that you have
+a bash\_profile file with those two lines in it. See the instructor or
+TA for help if you don't think you succeeded. The easiest way to confirm
+is to run this command in your terminal (not in Rmarkdown) and looking
+at the contents:
+
+\texttt{cat\ \textasciitilde{}/.bash\_profile}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{"source \textasciitilde{}/.bashrc"} \OperatorTok{\textgreater{}}\NormalTok{ .bash\_profile}
+\CommentTok{\# \textgreater{} : overwrites the existing file, or creates a file if the file of the mentioned name is not present in the directory}
+
+\BuiltInTok{echo} \StringTok{"DATA=/local{-}scratch/course\_files/MBB243/"} \OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ .bash\_profile}
+\CommentTok{\# \textgreater{}\textgreater{} : appends the existing file, or creates a file if the file of the mentioned name is not present in the directory}
+
+\FunctionTok{cat}\NormalTok{ \textasciitilde{}/.bash\_profile}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # .bash_profile
+## 
+## # Get the aliases and functions
+## if [ -f ~/.bashrc ]; then
+##  . ~/.bashrc
+## fi
+## 
+## # User specific environment and startup programs
+\end{verbatim}
+
+\hypertarget{setting-a-variable-in-r}{%
+\subsection{Setting a variable in R}\label{setting-a-variable-in-r}}
+
+All programming languages has variables. R has a much more complex (and
+useful) set of variable types. Here we will just repeat what we learned
+in bash to see how the syntax looks. In this case, it turns out that
+using the bash syntax does the same thing but that's not always the
+case. The example below shows two ways to accomplish the same thing in R
+with the second example illustrating the preferred syntax to use in R
+(\texttt{\textless{}-} instead of \texttt{=}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#DATA="/local{-}scratch/course\_files/MBB243/"}
+\CommentTok{\#print(DATA)}
+
+\CommentTok{\#do the same thing in a preferred syntax}
+\NormalTok{DATA }\OtherTok{\textless{}{-}} \StringTok{"/local{-}scratch/course\_files/MBB243/"}
+\FunctionTok{print}\NormalTok{(DATA)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "/local-scratch/course_files/MBB243/"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#get directory contents}
+\FunctionTok{dir}\NormalTok{(DATA)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "bash_profile_template.txt"                  
+##  [2] "bin"                                        
+##  [3] "chromFaMasked.tar"                          
+##  [4] "condarc_template.txt"                       
+##  [5] "covid19_cases_bc.csv"                       
+##  [6] "covid19_cases_canada_monthly.csv"           
+##  [7] "covid19_cases_provinces_weekly.csv"         
+##  [8] "covid19_cases_provinces.csv"                
+##  [9] "covid19_cases_worldwide_monthly.csv"        
+## [10] "covid19_cases_worldwide_monthly.updated.csv"
+## [11] "covid19_cases_worldwide.csv"                
+## [12] "cutsite_ref.fa"                             
+## [13] "ensembl_genes_hg38.tsv"                     
+## [14] "ENST00000003084"                            
+## [15] "files"                                      
+## [16] "gambl_capture_mutmat_coo.tsv"               
+## [17] "gene_id.sorted.txt"                         
+## [18] "gene_id.txt"                                
+## [19] "genome_Ashley_Bodily.txt"                   
+## [20] "genotype_counts.txt"                        
+## [21] "get_data.R"                                 
+## [22] "GSE125966_annotated.csv"                    
+## [23] "GSE125966_GOYA_mini.csv"                    
+## [24] "GSE125966_GOYA_stranded_log2CPM.csv"        
+## [25] "GSE125966.csv"                              
+## [26] "hg38.fa"                                    
+## [27] "hg38.fa.fai"                                
+## [28] "human_CDS_chr7.fa.gz"                       
+## [29] "human_genes_chr7"                           
+## [30] "human_genes_chr7.fa"                        
+## [31] "human_genes_chr7.tar.gz"                    
+## [32] "MBB243"                                     
+## [33] "md"                                         
+## [34] "miniconda_installer.sh"                     
+## [35] "Morin_genotypes.txt"                        
+## [36] "mouse_cds_chr7.fa.txt"                      
+## [37] "pannets_expr_array.csv.gz"                  
+## [38] "pannets_expr_rnaseq.csv.gz"                 
+## [39] "pannets_metadata.csv"                       
+## [40] "population_canada.csv"                      
+## [41] "README.md"                                  
+## [42] "Sneddon_genotypes.txt"                      
+## [43] "some_human_genes.fa"                        
+## [44] "ssh_config_template.txt"                    
+## [45] "test.txt"                                   
+## [46] "words.txt"                                  
+## [47] "yeast_chromosomes"                          
+## [48] "yeast_genome.fa"                            
+## [49] "yeast_genome.fa~"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#store directory contents in a new variable}
+\NormalTok{data\_list }\OtherTok{=} \FunctionTok{dir}\NormalTok{(DATA)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{configuring-your-terminal-to-run-custom-software}{%
+\subsection{Configuring your terminal to run custom
+software}\label{configuring-your-terminal-to-run-custom-software}}
+
+There are some things we need to set up for each user that are great
+examples of bash code that we want to be reproducible. One of them is to
+ensure any software you install on the server will always be available.
+Unlike some operating systems, Linux allows individual users to install
+software in any location they have the appropriate permissions. Users
+can install different versions/flavours of the same software on one
+computer. For any such software to be run, the shell needs to know where
+to look for it. When we open a new terminal session (i.e.~bash is
+launched) the contents of a few files are automatically interpreted.
+These configuration files are often named with a \texttt{.} character
+before the filename, which is a way to ``hide'' files from normal
+directory listing. For example, today we will work with
+\texttt{.bash\_profile}, \texttt{.bashrc} and \texttt{.condarc}. To see
+the hidden files in the Files pane you can select ``show hidden files''
+under the ``More'' menu. If you did the task above properly, you should
+now have a .bashrc and a .bash\_profile file.
+
+\hypertarget{installing-miniconda-and-snakemake}{%
+\subsection{Installing miniconda and
+snakemake}\label{installing-miniconda-and-snakemake}}
+
+Some of the software we will need later in the semester isn't installed
+on the server. Here we will install the miniconda package, which makes
+the process of installing and maintaining multiple versions of other
+tools relatively painless. For your bash session to be aware of
+software, the location of it's executable needs to be known to the
+environment. Bash has special variables that keep track of various
+important configuration. The location of available software is stored in
+the environment variable known as PATH. Notably, you have a ton of
+environment variables that are convenient shortcuts. Try adding some
+code below to print the contents of other environment variables such as
+HOME, HOSTNAME, and USER.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \VariableTok{$PATH}
+\BuiltInTok{echo} \VariableTok{$HOME}
+\BuiltInTok{echo} \VariableTok{$HOSTNAME}
+\BuiltInTok{echo} \VariableTok{$USER}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## /localhome/apurific/miniconda3/bin:/localhome/apurific/miniconda3/condabin:/localhome/apurific/.local/bin:/localhome/apurific/bin:/usr/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback
+## /localhome/apurific
+## mbb-bioinf.mbb.sfu.ca
+## apurific
+\end{verbatim}
+
+\textbf{Task}
+
+In the Terminal you need to run the script miniconda\_installer.sh. This
+will launch an interactive process so you will have to run it directly
+in the terminal not in a code chunk. To run it, simply enter the full
+path to the installer script
+\texttt{/local-scratch/course\_files/MBB243/miniconda\_installer.sh} in
+the Terminal and hit ENTER. You must respond to the on-screen prompts.
+You have to hit the ENTER key and (theoretically) you will read the
+EULA. Then you will need to type ``yes'' and hit ENTER again. Hit ENTER
+again at each prompt. Don't change any of the default options.
+\emph{IMPORTANT}: To test that your installation worked you will need to
+reload your bash environment. This can always be done by running
+\texttt{source\ \textasciitilde{}/.bashrc}. If you did this step and the
+previous steps properly, your prompt should now look like this:
+
+\texttt{(base)\ {[}yourname@mbb-bioinf\ yourname{]}\$}
+
+\hypertarget{executing-python-in-rstudio}{%
+\subsection{Executing Python in
+RStudio}\label{executing-python-in-rstudio}}
+
+The R language has many benefits for the analysis of data types commonly
+produced in the life sciences. Python is another popular programming
+language that will be covered in this course. For our labs, we will
+configure RStudio to evaluate code blocks in either language. This first
+requires the installation and loading of the \texttt{reticulate}
+package. If you are running this on the lab server it should already be
+installed. The following code should install (if necessary) and load the
+package. The third line configures the library to use a specific python
+interpreter. \textbf{you shouldn't have to uncomment the first line if
+the server is set up properly}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages("reticulate")}
+\FunctionTok{library}\NormalTok{(reticulate)}
+\FunctionTok{use\_python}\NormalTok{(}\StringTok{"/usr/bin/python3"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+When we want to use Python instead of R we simply need to change the
+first part of the code block to specify the language. Although you can't
+easily tell from the example below, the code is being interpreted as
+Python code. The two examples below show you how switching between the
+two interpreters can yield different results even if the syntax is
+``valid'' for both.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{this\_string }\OperatorTok{=} \StringTok{"ATT"} \OperatorTok{+} \StringTok{"TAG"}
+\NormalTok{this\_string}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'ATTTAG'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{this\_string }\OtherTok{=} \StringTok{"ATT"} \SpecialCharTok{+} \StringTok{"TAG"}
+\NormalTok{this\_string}
+\end{Highlighting}
+\end{Shaded}
+
+The second code block will throw an error if evaluated. Try running the
+block or change it to \texttt{eval=TRUE} then knit the document.
+
+\hypertarget{installing-biopython}{%
+\subsection{Installing BioPython}\label{installing-biopython}}
+
+Conda can be used to install both command-line tools and Python
+libraries. Run the following command at your Terminal and respond to any
+prompts.
+
+\begin{verbatim}
+conda install -c conda-forge biopython
+\end{verbatim}
+
+\hypertarget{testing-biopython}{%
+\subsection{Testing BioPython}\label{testing-biopython}}
+
+To run Python code we always need to ensure we've loaded the
+\texttt{reticulate} R package and specified the python interpreter we
+want to use. The code below also configures reticulate to use the
+miniconda version you theoretically just updated. To actually run this
+part of the code you will first need to have completed the earlier
+tasks.
+
+\textbf{Task} Set eval=TRUE in the two chunks below and run them (in
+order!).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(reticulate)}
+\FunctionTok{use\_python}\NormalTok{(}\StringTok{"miniconda3/bin/python"}\NormalTok{)}
+\FunctionTok{use\_condaenv}\NormalTok{(}\StringTok{"base"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The next code block simply prints the path to the python executable that
+is used and then loads and tests some functionality provided by the
+BioPython library.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sys.executable}
+\ImportTok{from}\NormalTok{ Bio.Seq }\ImportTok{import}\NormalTok{ Seq}
+\NormalTok{my\_seq }\OperatorTok{=}\NormalTok{ Seq(}\StringTok{"AGTACACTGGT"}\NormalTok{)}
+\NormalTok{complemented\_seq }\OperatorTok{=}\NormalTok{ my\_seq.complement()}
+\BuiltInTok{str}\NormalTok{(complemented\_seq)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{installing-more-utilities}{%
+\subsection{Installing more utilities}\label{installing-more-utilities}}
+
+We also need the program \texttt{samtools} installed to perform our next
+(optional) task. It will be needed later in the semester so please
+install it now even if you opt out of the last task.
+
+\textbf{Task} Run this command in your terminal and make sure it
+completes successfully. Test it by simply entering \texttt{samtools} in
+your terminal (followed by ).
+
+\begin{verbatim}
+conda install -c bioconda samtools
+\end{verbatim}
+
+\textbf{Optional Task}
+
+The human reference genome in fasta format can be found in the lab data
+directory, specifically
+\texttt{/local-scratch/course\_files/MBB243/hg38.fa}. Using what you
+learned in lecture, construct a command that uses samtools to extract
+the sequence from this region: \texttt{chr14:65102304-65102339} and
+store the sequence as a variable. Note that we don't want to store the
+``header'' (starts with \texttt{\textgreater{}}). Construct this code in
+the code chunk below. Your code chunk should end with an \texttt{echo}
+command that prints the contents of your new variable.
+
+Think about how you might make this code output to a file instead of
+just to the terminal. How might this be useful?
+
+\hypertarget{lab-completion-checklist}{%
+\subsection{Lab Completion Checklist}\label{lab-completion-checklist}}
+
+\textbf{Task} At the end of every lab, replace TODO with DONE to the
+left of each task to indicate you've completed it
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1806}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8194}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+status
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+task
+\end{minipage} \\
+\midrule()
+\endhead
+DONE & This file has been knit \\
+TODO & My .bashrc file exists \\
+TODO & Miniconda is installed \\
+TODO & I was able to install both Bioconda and samtools using conda \\
+TODO & The last few code chunks that run Python code run without errors
+when I knit this document \\
+\bottomrule()
+\end{longtable}
+
+\end{document}
